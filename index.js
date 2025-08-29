@@ -138,7 +138,8 @@ formBlog.addEventListener("submit", (e) => {
       });
 
       buttonDelete.addEventListener("click", () => {
-        card.remove();
+       
+        if(confirm('apakah anda yakin ingin menghapus ?')) card.remove()
       });
 
       buttonDetail.addEventListener("click", () => {
