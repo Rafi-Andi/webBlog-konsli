@@ -124,7 +124,6 @@ formBlog.addEventListener("submit", (e) => {
         inputImage.value = imageSrc.src.trim();
         inputContent.value = contentText.textContent.trim();
         inputCategory.value = categoryText.textContent.trim();
-        inputDate.value = date;
 
         postBTN.value = "Update";
         cancelBTN.style.display = "inline-block";
