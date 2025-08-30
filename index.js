@@ -1,4 +1,5 @@
 const formBlog = document.getElementById("form-blog");
+
 const inputTitle = document.getElementById("title");
 const inputContent = document.getElementById("content");
 const inputCategory = document.getElementById("category");
@@ -25,35 +26,7 @@ formBlog.addEventListener("submit", (e) => {
     inputCategory.value.trim() &&
     inputDate.value
   ) {
-    if (editItem) {
-      const imageSrc = editItem.querySelector(".image");
-      const titleText = editItem.querySelector(".titleText");
-      const contentText = editItem.querySelector(".contentTeks");
-      const contentTextHidden = editItem.querySelector(".contentText");
-      const categoryText = editItem.querySelector(".categoryText");
-      const dateText = editItem.querySelector(".dateText");
-
-      const contentTrim = inputContent.value.trim();
-      const content =
-        contentTrim.length > 100
-          ? contentTrim.substring(0, 100) + "..."
-          : contentTrim;
-
-      imageSrc.src = inputImage.value.trim();
-      titleText.textContent = inputTitle.value.trim();
-      contentText.textContent = content;
-      contentTextHidden.textContent = inputContent.value.trim();
-      categoryText.textContent = inputCategory.value.trim();
-      dateText.textContent = date;
-      formBlog.reset();
-
-      postBTN.value = "Tambah";
-      cancelBTN.style.display = "none";
-
-      editItem = null;
-
-      previewDone();
-    } else {
+    if (editItem === null) {
       const card = document.createElement("div");
       card.classList.add("card");
       const contentTrim = inputContent.value.trim();
@@ -113,7 +86,7 @@ formBlog.addEventListener("submit", (e) => {
         formBlog.reset();
         editItem = null;
         previewDone();
-        postBTN.value = "Tambah"; 
+        postBTN.value = "Tambah";
         cancelBTN.style.display = "none";
       });
 
@@ -137,8 +110,7 @@ formBlog.addEventListener("submit", (e) => {
       });
 
       buttonDelete.addEventListener("click", () => {
-       
-        if(confirm('apakah anda yakin ingin menghapus ?')) card.remove()
+        if (confirm("apakah anda yakin ingin menghapus ?")) card.remove();
       });
 
       buttonDetail.addEventListener("click", () => {
@@ -179,6 +151,34 @@ formBlog.addEventListener("submit", (e) => {
           containerPostDetail.classList.add("hidden");
         });
       });
+    } else {
+      const imageSrc = editItem.querySelector(".image");
+      const titleText = editItem.querySelector(".titleText");
+      const contentText = editItem.querySelector(".contentTeks");
+      const contentTextHidden = editItem.querySelector(".contentText");
+      const categoryText = editItem.querySelector(".categoryText");
+      const dateText = editItem.querySelector(".dateText");
+
+      const contentTrim = inputContent.value.trim();
+      const content =
+        contentTrim.length > 100
+          ? contentTrim.substring(0, 100) + "..."
+          : contentTrim;
+
+      imageSrc.src = inputImage.value.trim();
+      titleText.textContent = inputTitle.value.trim();
+      contentText.textContent = content;
+      contentTextHidden.textContent = inputContent.value.trim();
+      categoryText.textContent = inputCategory.value.trim();
+      dateText.textContent = date;
+      formBlog.reset();
+
+      postBTN.value = "Tambah";
+      cancelBTN.style.display = "none";
+
+      editItem = null;
+
+      previewDone();
     }
   } else {
     alert("tidak boleh kosong");
